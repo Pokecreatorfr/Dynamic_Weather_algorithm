@@ -1,13 +1,14 @@
 import math
+from pickle import TRUE
 
-player_id = 1498921231 # random 32 bits number
+player_id = 1418921202 # random 32 bits number
 
 region_map = [[''for x in range(28)] for i in range(15)]
-
+size = [[0,1,2,3,3,2,1,0],[1,2,4,7,7,4,2,1], [7,7,7,7,7,7,7,7,7]]
 day = 16
-month = 7
+month = 6
 year = 2022
-hour = 8
+hour = 10
 
 random_count = [0 for i in range(256)]
 
@@ -30,7 +31,7 @@ for i in range(1):
 #print(random_count)
 
 for i in range(len(weather_keypoints_coords)):
-    if pseudo_random_id(day , month , year , hour , player_id, i) < 75:
+    if pseudo_random_id(day , month , year , hour , player_id, i) < 175:
         region_map[weather_keypoints_coords[i][0]][weather_keypoints_coords[i][1]] = 'C'
     else :
         region_map[weather_keypoints_coords[i][0]][weather_keypoints_coords[i][1]] = 'S'
@@ -39,7 +40,17 @@ for i in range(len(weather_keypoints_coords)):
     for x in range(8):
         for y in range(14):
             print(i , x , y)
-            region_map[weather_keypoints_offset[i][0]*7+x][weather_keypoints_offset[i][1]*13+y] = region_map[weather_keypoints_coords[i][0]][weather_keypoints_coords[i][1]]
+            region_map[weather_keypoints_offset[i][0]*7+x][weather_keypoints_offset[i][1]*14+y] = region_map[weather_keypoints_coords[i][0]][weather_keypoints_coords[i][1]]
+
+for i in range(len(weather_keypoints_coords)):
+    if region_map[weather_keypoints_coords[i][0]][weather_keypoints_coords[i][1]] == 'C':
+        if pseudo_random_id(day , month , year , hour , player_id, i+4) < 100:
+            rain = TRUE
+            print('TRUE')
+            if pseudo_random_id(day , month , year , hour , player_id, i+5) < 100:
+                thunder = TRUE
+            if pseudo_random_id(day , month , year , hour , player_id, i+5)>150 :
+                
 
 for i in range(len(region_map)):
     print(region_map[i])
