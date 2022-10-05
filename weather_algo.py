@@ -5,7 +5,7 @@ def seed_generator():
     return random.randint(0,255) # à remplacer par un calcul a partir du player id et de la RTC
 
 
-def first_pass_generation(table):
+def first_pass_generation(table): #le premier passage donne aléatoirement du soleil ou des nuages pour chaque case 
     for i in range(len(table)):
         for x in range(len(table[i])):
             if seed_generator() < 120:
@@ -13,7 +13,7 @@ def first_pass_generation(table):
             else : 
                 table[i][x] = 'C'
 
-def second_pass_generation(table):
+def second_pass_generation(table): #le second passage lisse la map en regroupant les cases par groupe de 4. 
     for i in range(int(len(table)/2)):
         for x in range(int(len(table[i])/2)):
             s = 0
@@ -34,6 +34,12 @@ def second_pass_generation(table):
             for y in range(2):
                 for z in range(2):
                     table[i*2+y][x*2+z] = zone_weather
+
+#troisieme passage (a faire) permet de prendre en compte les climat de chaque case et de recalculer des metéos locales en se basant sur celles existant déja
+
+#quatrieme passage (a faire) ajoute les météos spéciales en fonction du climat de la météo deja présente ( par exemple neige)
+
+#cinquième passage (a faire) ajoute les météos spéciales en fonction du temps , par exemple brouillard le matin en hiver
 
 map_table = [[''for x in range(28)] for i in range(16)]
 
