@@ -1,7 +1,5 @@
 import math
 import random
-from re import S
-import struct
 
 def seed_generator():
     return random.randint(0,255) # à remplacer par un calcul a partir du player id et de la RTC
